@@ -33,8 +33,10 @@ function addProductToCart(product, quantity) {
   }
   
   // TODO hér þarf að athuga hvort lína fyrir vöruna sé þegar til
-  const cartLine = createCartLine(product, quantity);
-  cart.appendChild(cartLine);
+  for (let i = 0; i < quantity; i++) {
+    const cartLine = createCartLine(product, quantity);
+    cart.appendChild(cartLine);
+  }
 
   // Sýna efni körfu
   showCartContent(true);
@@ -57,7 +59,8 @@ function submitHandler(event) {
 
   // TODO hér þarf að finna fjölda sem á að bæta við körfu með því að athuga
   // á input
-  const quantity = 1;
+  const quantity = parseInt(parent.querySelector('input').value);
+  console.log(quantity);
 
   // Bætum vöru í körfu (hér væri gott að bæta við athugun á því að varan sé til)
   addProductToCart(product, quantity);
