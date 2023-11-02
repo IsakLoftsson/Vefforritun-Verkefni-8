@@ -1,4 +1,4 @@
-import { createCartLine, showCartContent, checkIfTableLineEmpty } from './lib/ui.js';
+import { createCartLine, showCartContent, checkIfTableLineEmpty, updateTotalTotal } from './lib/ui.js';
 import { formatNumber } from './lib/helpers.js';
 
 const products = [
@@ -77,9 +77,10 @@ function addProductToCart(product, quantity) {
       console.log(price , quantity)
       const newTotal = price * quantity;
       totalElement.textContent = formatNumber(newTotal);
+    }
   }
-  
-}
+  // Uppfæra samtals verð 
+  updateTotalTotal();
   
   // Sýna efni körfu
   showCartContent(true);
@@ -118,3 +119,16 @@ for (const form of Array.from(addToCartForms)) {
 }
 
 // TODO bæta við event handler á form sem submittar pöntun
+
+const formfylki = document.querySelectorAll('form');
+const form = formfylki[3];
+const gangaFraKaupumButton = form.querySelector('button')
+
+gangaFraKaupumButton.addEventListener('click', gangaFraKaupum)
+
+function gangaFraKaupum(event){
+  event.preventDefault();
+  const kvittun = document.querySelector('.receipt');
+  kvittun.classList.remove('hidden');
+
+}
